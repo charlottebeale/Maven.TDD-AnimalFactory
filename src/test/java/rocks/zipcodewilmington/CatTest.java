@@ -2,6 +2,7 @@ package rocks.zipcodewilmington;
 
 import org.junit.Assert;
 import org.junit.Test;
+import rocks.zipcodewilmington.animals.Animal;
 import rocks.zipcodewilmington.animals.Cat;
 
 import java.util.Date;
@@ -21,23 +22,107 @@ public class CatTest {
 
     @Test
     public void constructorTest() {
-        // Given (cat data)
+
         String givenName = "Zula";
         Date givenBirthDate = new Date();
         Integer givenId = 0;
 
-        // When (a cat is constructed)
         Cat cat = new Cat(givenName, givenBirthDate, givenId);
 
-        // When (we retrieve data from the cat)
         String retrievedName = cat.getName();
         Date retrievedBirthDate = cat.getBirthDate();
         Integer retrievedId = cat.getId();
 
-        // Then (we expect the given data, to match the retrieved data)
         Assert.assertEquals(givenName, retrievedName);
         Assert.assertEquals(givenBirthDate, retrievedBirthDate);
         Assert.assertEquals(givenId, retrievedId);
     }
+@Test
+    public void setNameTest() {
+        Date givenBirthDate = new Date();
+        Integer givenId = 0;
+
+        Cat phelix = new Cat("", givenBirthDate, 0);
+
+        String giveName = "Phelix";
+
+        String expected = giveName;
+        phelix.setName("Phelix");
+        String actual = phelix.getName();
+
+        Assert.assertEquals(expected, actual);
+}
+
+@Test
+    public void speakTest(){
+        String givenName = "Phelix";
+        Date givenBirthDate = new Date();
+        Integer givenId = 0;
+
+        Cat phelix = new Cat("", givenBirthDate, 0);
+
+        Date expected = "meow!";
+
+        String actual = phelix.speak();
+
+        Assert.assertEquals(expected, actual);
+}
+
+@Test
+    public void setBirthDateTest(){
+        String givenName = "Phelix";
+        Date givenBirthDate = new Date();
+        Integer givenId = 0;
+
+        Cat phelix = new Cat("", givenBirthDate, 0);
+
+        Date expected = new Date();
+
+        phelix.setBirthDate(expected);
+
+        Date actual = phelix.getBirthDate();
+
+        Assert.assertEquals(expected, actual);
+}
+
+@Test
+    public void eatTest(){
+        String givenName = "Phelix";
+        Date givenBirthDate = new Date();
+        Integer givenId = 0;
+
+        Cat phelix = new Cat("", givenBirthDate, 0);
+
+        Food food1 = new Food();
+        int actual = phelix.getNumberOfMealsEaten();
+        int expected = actual + 1;
+
+        phelix.eat(food1);
+        actual = phelix.getNumberOfMealsEaten();
+
+        Assert.assertEquals(expected, actual);
+
+}
+
+@Test
+    public void implementAnimalTest() {
+        String givenName = "Phelix";
+        Date givenBirthDate = new Date();
+        Integer givenId = 0;
+
+        Cat phelix = new Cat(givenName, givenBirthDate, givenId);
+
+        Assert.assertEquals(phelix instanceof Animal);
+}
+@Test
+    public void implementMammalTest(){
+        String givenName = "Phelix";
+        Date givenBirthDate = new Date();
+        Integer givenId = 0;
+
+        Cat phelix = new Cat(givenName, givenBirthDate, givenId);
+
+        Assert.assertEquals(phelix instanceof Mammal);
+}
 
 }
